@@ -19,9 +19,80 @@ namespace SectionA_Calculator_VP
                 ViewState[VSOp] = string.Empty;
                 drpTheme.Items.Add("Water");
                 drpTheme.Items.Add("Fire");
-                drpTheme.Items.Add("Earth");
-                drpTheme.Items.Add("Alien Planet");
+                drpTheme.Items.Add("Mountains");
+                drpTheme.Items.Add("Galaxy");
             }
+            
+            // Reapply theme on every page load (including postbacks)
+            ApplyStoredTheme();
+        }
+        
+        private void ApplyStoredTheme()
+        {
+            // Read cookie first (persisted); fall back to Session
+            string selectedTheme = null;
+            var cookie = Request.Cookies["SelectedTheme"];
+            if (cookie != null && !string.IsNullOrWhiteSpace(cookie.Value))
+                selectedTheme = cookie.Value;
+            else
+                selectedTheme = Session["SelectedTheme"] as string;
+
+            if (string.IsNullOrEmpty(selectedTheme)) return;
+
+            // Apply CSS link based on the selected theme
+            string cssFile = string.Empty;
+            string imageFilter = string.Empty;
+            string imageUrl = string.Empty;
+
+            switch (selectedTheme)
+            {
+                case "Water":
+                    cssFile = "~/App_Themes/DropDownTheme/Water.css";
+                    imageFilter = "sepia(100%) saturate(300%) hue-rotate(180deg) brightness(0.8)";
+                    imageUrl = "~/App_Themes/DropDownTheme/Water_Logo.jpg";
+                    break;
+                case "Fire":
+                    cssFile = "~/App_Themes/DropDownTheme/Fire.css";
+                    imageFilter = "sepia(100%) saturate(400%) hue-rotate(-10deg) brightness(1.1)";
+                    imageUrl = "~/App_Themes/DropDownTheme/Fire_Logo.jpg";
+                    break;
+                case "Earth":
+                    cssFile = "~/App_Themes/DropDownTheme/Earth.css";
+                    imageFilter = "sepia(100%) saturate(200%) hue-rotate(10deg) brightness(0.7)";
+                    imageUrl = "~/App_Themes/DropDownTheme/Mountains_Logo.jpg";
+                    break;
+                case "Alien Planet":
+                    cssFile = "~/App_Themes/DropDownTheme/Alien Planet.css";
+                    imageFilter = "brightness(0.3) contrast(1.2)";
+                    imageUrl = "~/App_Themes/DropDownTheme/Planet_Logo.jpg"; // avoid spaces in filenames if possible
+                    break;
+            }
+
+            // Add the CSS file dynamically (only if not already present)
+            if (!string.IsNullOrEmpty(cssFile))
+            {
+                var link = new System.Web.UI.HtmlControls.HtmlLink();
+                link.Href = ResolveUrl(cssFile);
+                link.Attributes["rel"] = "stylesheet";
+                link.Attributes["type"] = "text/css";
+                Page.Header.Controls.Add(link);
+            }
+
+            // Apply filter to Image1
+            if (!string.IsNullOrEmpty(imageFilter))
+            {
+                Image1.Style["filter"] = imageFilter;
+            }
+
+            // Set Image1 source
+            if (!string.IsNullOrEmpty(imageUrl))
+            {
+                Image1.ImageUrl = ResolveUrl(imageUrl);
+                Image1.AlternateText = selectedTheme;
+            }
+
+            // Optional: Store filter in ViewState to persist
+            ViewState["ImageFilter"] = imageFilter;
         }
         
         void EvalRun()
@@ -128,48 +199,9 @@ namespace SectionA_Calculator_VP
             // Store the selected theme in Session to persist across postback
             Session["SelectedTheme"] = selectedTheme;
 
-            // Apply CSS link based on the selected theme
-            string cssFile = string.Empty;
-            string imageFilter = string.Empty;
-
-            switch (selectedTheme)
-            {
-                case "Water":
-                    cssFile = "~/App_Themes/DropDownTheme/Water.css";
-                    imageFilter = "sepia(100%) saturate(300%) hue-rotate(180deg) brightness(0.8)"; // Blue tint
-                    break;
-                case "Fire":
-                    cssFile = "~/App_Themes/DropDownTheme/Fire.css";
-                    imageFilter = "sepia(100%) saturate(400%) hue-rotate(-10deg) brightness(1.1)"; // Reddish-orange tint
-                    break;
-                case "Earth":
-                    cssFile = "~/App_Themes/DropDownTheme/Earth.css";
-                    imageFilter = "sepia(100%) saturate(200%) hue-rotate(10deg) brightness(0.7)"; // Brown tint
-                    break;
-                case "Alien Planet":
-                    cssFile = "~/App_Themes/DropDownTheme/Alien Planet.css";
-                    imageFilter = "brightness(0.3) contrast(1.2)"; // Black/dark tint
-                    break;
-            }
-
-            // Add the CSS file dynamically
-            if (!string.IsNullOrEmpty(cssFile))
-            {
-                var link = new System.Web.UI.HtmlControls.HtmlLink();
-                link.Href = ResolveUrl(cssFile);
-                link.Attributes["rel"] = "stylesheet";
-                link.Attributes["type"] = "text/css";
-                Page.Header.Controls.Add(link);
-            }
-
-            // Apply filter to Image1
-            if (!string.IsNullOrEmpty(imageFilter))
-            {
-                Image1.Style["filter"] = imageFilter;
-            }
-
-            // Optional: Store filter in ViewState to persist
-            ViewState["ImageFilter"] = imageFilter;
+            // The theme will be applied by ApplyStoredTheme() on the next page load
+            // Force immediate application by calling it directly
+            ApplyStoredTheme();
         }
     }
 }
