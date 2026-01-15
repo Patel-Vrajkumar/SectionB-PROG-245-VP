@@ -1,0 +1,38 @@
+﻿body {
+    background-image: url('Water.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#CalcPanel {
+    background-color: rgba(173, 216, 230, 0.9) !important;
+    border-color: #4682B4 !important;
+}
+
+#lblEquation, #lblResult {
+    background-color: rgba(224, 255, 255, 0.95) !important;
+    color: #00008B !important;
+    border-color: #4682B4 !important;
+}
+
+.btn-number {
+    background-color: #87CEEB !important;
+    color: #00008B !important;
+}
+
+.btn-operator {
+    background-color: #4682B4 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-clear {
+    background-color: #5F9EA0 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-equal {
+    background-color: #1E90FF !important;
+    color: #FFFFFF !important;
+}

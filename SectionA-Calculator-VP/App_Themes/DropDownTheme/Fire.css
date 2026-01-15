@@ -1,0 +1,38 @@
+﻿body {
+    background-image: url('Fire.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#CalcPanel {
+    background-color: rgba(255, 140, 0, 0.85) !important;
+    border-color: #8B0000 !important;
+}
+
+#lblEquation, #lblResult {
+    background-color: rgba(255, 228, 196, 0.95) !important;
+    color: #8B0000 !important;
+    border-color: #FF4500 !important;
+}
+
+.btn-number {
+    background-color: #FF8C00 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-operator {
+    background-color: #FF4500 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-clear {
+    background-color: #DC143C !important;
+    color: #FFFFFF !important;
+}
+
+.btn-equal {
+    background-color: #B22222 !important;
+    color: #FFFFFF !important;
+}

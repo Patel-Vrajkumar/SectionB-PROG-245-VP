@@ -1,0 +1,38 @@
+﻿body {
+    background-image: url('Earth.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#CalcPanel {
+    background-color: rgba(139, 90, 43, 0.85) !important;
+    border-color: #654321 !important;
+}
+
+#lblEquation, #lblResult {
+    background-color: rgba(245, 222, 179, 0.95) !important;
+    color: #654321 !important;
+    border-color: #8B4513 !important;
+}
+
+.btn-number {
+    background-color: #D2691E !important;
+    color: #FFFFFF !important;
+}
+
+.btn-operator {
+    background-color: #8B4513 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-clear {
+    background-color: #A0522D !important;
+    color: #FFFFFF !important;
+}
+
+.btn-equal {
+    background-color: #654321 !important;
+    color: #FFFFFF !important;
+}

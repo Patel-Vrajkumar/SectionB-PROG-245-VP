@@ -1,0 +1,128 @@
+﻿/* Calculator Stylesheet */
+
+/* Root Variables for easy theming */
+:root {
+    --bg-color: #f5f7fa;
+    --panel-bg: #ffffff;
+    --border-color: #000000;
+    --text-color: #111827;
+    --display-bg: #ffffff;
+    --display-border: #8b8b8b;
+    --btn-number: #999999;
+    --btn-operator: #ffeb3b;
+    --btn-hover: #e0e0e0;
+    --btn-operator-hover: #fdd835;
+}
+
+/* Body and Page Layout */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color);
+}
+
+/* Calculator Panel */
+#CalcPanel {
+    background: var(--panel-bg);
+    border: 3px double var(--border-color) !important;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+}
+
+/* Display Labels */
+#lblEquation, #lblResult {
+    background: var(--display-bg) !important;
+    border: 2px groove var(--display-border) !important;
+    border-radius: 6px;
+    text-align: right;
+    display: block;
+    padding-right: 12px !important;
+    font-family: 'Courier New', monospace;
+    color: var(--text-color);
+}
+
+#lblEquation {
+    font-size: 42px !important;
+    line-height: 1.2;
+    padding: 10px 12px !important;
+}
+
+#lblResult {
+    font-size: 20px !important;
+    color: #666;
+    padding: 8px 12px !important;
+}
+
+/* All Buttons Base Style */
+input[type="submit"] {
+    font-weight: bold;
+    font-size: 24px !important;
+    border: 2px solid #666;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    left: 488px;
+    top: 73px;
+    position: absolute;
+    height: 39px;
+    width: 183px;
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+input[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Number Buttons (gray) */
+#Button1, #Button6, #Button7, #Button9, #Button10, #Button11, #Button12, 
+#Button14, #Button15, #Button16, #Button18,
+#Button2, #Button3 {
+    background: var(--btn-number) !important;
+    color: #000;
+}
+
+#Button1:hover, #Button6:hover, #Button7:hover, #Button9:hover, #Button10:hover, 
+#Button11:hover, #Button12:hover, #Button14:hover, #Button15:hover, #Button16:hover, 
+#Button18:hover, #Button2:hover, #Button3:hover {
+    background: var(--btn-hover) !important;
+}
+
+/* Operator Buttons (yellow) */
+#Button4, #Button5, #Button13, #Button17, #Button19 {
+    background: var(--btn-operator) !important;
+    color: #000;
+    border-color: #f9a825;
+}
+
+#Button4:hover, #Button5:hover, #Button13:hover, #Button17:hover, #Button19:hover {
+    background: var(--btn-operator-hover) !important;
+}
+
+/* Clear Buttons Special Style */
+#Button2, #Button3 {
+    font-weight: bold;
+    border-color: #555;
+}
+
+/* Equals Button Special Highlight */
+#Button17 {
+    font-size: 28px !important;
+    border-width: 3px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    #CalcPanel {
+        left: 10px !important;
+        width: calc(100% - 20px) !important;
+    }
+}
