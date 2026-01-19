@@ -56,15 +56,15 @@ namespace SectionA_Calculator_VP
                     imageFilter = "sepia(100%) saturate(400%) hue-rotate(-10deg) brightness(1.1)";
                     imageUrl = "~/App_Themes/DropDownTheme/Fire_Logo.jpg";
                     break;
-                case "Earth":
+                case "Mountains":
                     cssFile = "~/App_Themes/DropDownTheme/Earth.css";
                     imageFilter = "sepia(100%) saturate(200%) hue-rotate(10deg) brightness(0.7)";
                     imageUrl = "~/App_Themes/DropDownTheme/Mountains_Logo.jpg";
                     break;
-                case "Alien Planet":
+                case "Galaxy":
                     cssFile = "~/App_Themes/DropDownTheme/Alien Planet.css";
                     imageFilter = "brightness(0.3) contrast(1.2)";
-                    imageUrl = "~/App_Themes/DropDownTheme/Planet_Logo.jpg"; // avoid spaces in filenames if possible
+                    imageUrl = "~/App_Themes/DropDownTheme/Planet_Logo.jpg";
                     break;
             }
 
@@ -198,6 +198,11 @@ namespace SectionA_Calculator_VP
 
             // Store the selected theme in Session to persist across postback
             Session["SelectedTheme"] = selectedTheme;
+
+            // Also store in cookie for longer persistence
+            var cookie = new System.Web.HttpCookie("SelectedTheme", selectedTheme);
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Add(cookie);
 
             // The theme will be applied by ApplyStoredTheme() on the next page load
             // Force immediate application by calling it directly
