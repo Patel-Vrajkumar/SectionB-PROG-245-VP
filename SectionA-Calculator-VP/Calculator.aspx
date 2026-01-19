@@ -45,11 +45,11 @@
         </asp:Panel>
        
         <p>
-            <asp:Button ID="btnLoadTheme" runat="server" OnClick="btnLoadTheme_Click" Text="LoadTheme" style="z-index: 1; left: 495px; top: 96px; position: absolute" />
+            <asp:Button ID="btnLoadTheme" runat="server" OnClick="btnLoadTheme_Click" Text="Click Twice to Load Theme" style="z-index: 1; left: 495px; top: 96px; position: absolute" />
         </p>
         <p>
             &nbsp;</p>
-        <asp:DropDownList ID="drpTheme" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" style="z-index: 1; left: 493px; top: 133px; position: absolute; height: 27px; width: 116px">
+        <asp:DropDownList ID="drpTheme" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" style="z-index: 1; left: 493px; top: 133px; position: absolute; height: 27px; width: 116px">
         </asp:DropDownList>
         <p>
             <asp:Image ID="Image1" runat="server" style="z-index: 2; left: 487px; top: 177px; position: absolute; height: 170px; width: 278px" />
